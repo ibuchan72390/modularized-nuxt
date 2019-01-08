@@ -1,0 +1,14 @@
+// https://github.com/prettier/tslint-plugin-prettier#usage
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-plugin-prettier",
+
+    // Required for tslint-plugin-prettier
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    // Added by package tslint-plugin-prettier
+    "prettier": true
+  }
+}
