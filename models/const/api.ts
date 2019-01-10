@@ -1,9 +1,8 @@
 import axios, { AxiosResponse } from 'axios'
-import { Album } from '../album.model'
-import { Photo } from '../photo.model'
-import { Post } from '../post.model'
-import { Todo } from '../todo.model'
-import { User } from '../user.model'
+import { Album } from '../entity/Album'
+import { Photo } from '../entity/Photo'
+import { Post } from '../entity/Post'
+import { User } from '../entity/User'
 
 const baseUrl = 'https://jsonplaceholder.typicode.com/'
 
@@ -16,12 +15,12 @@ async function loadPhotosAsync(): Promise<Photo[]> {
   return await getAsync<Photo>(baseUrl + 'photos')
 }
 
-async function loadPostsAsync(): Promise<Post[]> {
-  return await getAsync<Post>(baseUrl + 'posts')
+async function loadPhotosByAlbumAsync(albumId: number): Promise<Photo[]> {
+  return await getAsync<Photo>(baseUrl + 'photos?albumId=' + albumId)
 }
 
-async function loadTodosAsync(): Promise<Todo[]> {
-  return await getAsync<Todo>(baseUrl + 'todos')
+async function loadPostsAsync(): Promise<Post[]> {
+  return await getAsync<Post>(baseUrl + 'posts')
 }
 
 async function loadUsersAsync(): Promise<User[]> {
@@ -37,7 +36,7 @@ async function getAsync<T>(url: string): Promise<T[]> {
 export const Api = {
   loadAlbumsAsync,
   loadPhotosAsync,
+  loadPhotosByAlbumAsync,
   loadPostsAsync,
-  loadTodosAsync,
   loadUsersAsync
 }

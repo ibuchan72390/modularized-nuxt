@@ -25,28 +25,29 @@
 import { Component, Prop } from 'nuxt-property-decorator'
 import Vue from 'vue'
 import { Action, Getter, Mutation, namespace, State } from 'vuex-class'
+import { NamespaceKeys } from '~/models/const/namespace.keys'
 import { StoreKeys } from '~/models/const/store.keys'
-import { Todo } from '~/models/todo.model'
+import { Todo } from '~/models/entity/Todo'
 
-const todo = namespace('todo')
+const todo = namespace(NamespaceKeys.todo)
 
 @Component
 export default class TodoList extends Vue {
   public init: boolean = false
 
-  @todo.State(StoreKeys.shared.store.DATA)
+  @todo.State(StoreKeys.shared.store.data)
   public todos!: Todo[]
 
-  @todo.State(StoreKeys.shared.store.LOADING)
+  @todo.State(StoreKeys.shared.store.loading)
   public loading!: boolean
 
-  @todo.Getter(StoreKeys.shared.getters.COUNT)
+  @todo.Getter(StoreKeys.shared.getters.count)
   public todoCount!: number
 
-  @todo.Mutation(StoreKeys.todo.mutations.TOGGLE_TODO_COMPLETE)
+  @todo.Mutation(StoreKeys.todo.mutations.toggleTodoComplete)
   public toggleComplete!: (todo: Todo) => void
 
-  @todo.Mutation(StoreKeys.todo.mutations.REMOVE_TODO)
+  @todo.Mutation(StoreKeys.todo.mutations.removeTodo)
   public remove!: (todo: Todo) => void
 
   // This pattern allows us to avoid component initialization until references have been setup
@@ -54,11 +55,6 @@ export default class TodoList extends Vue {
   // As such, we need to wait until the component has been created and we can reference them in our template
   public created(): void {
     this.init = true
-  }
-
-
-  public asyncData(param): void {
-    console.log(param);
   }
 }
 </script>

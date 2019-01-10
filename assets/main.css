@@ -1,6 +1,20 @@
+body {
+  margin: 12px;
+}
+
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
 }
 .page-enter, .page-leave-to {
   opacity: 0;
+}
+
+.flex-wrap-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-border {
+  outline: 1px solid gray;
 }

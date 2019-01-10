@@ -1,4 +1,4 @@
-import { Geo } from './geo.model'
+import { Geo } from './Geo'
 
 export class Address {
   public street: string = ''

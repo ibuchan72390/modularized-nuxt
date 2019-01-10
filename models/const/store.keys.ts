@@ -1,21 +1,22 @@
 // Call this the expected store "interface"
 const shared = {
   actions: {
-    CLEAR: 'CLEAR',
-    INITIALIZE: 'INITIALIZE'
+    clear: 'clear',
+    initialize: 'initialize'
   },
   getters: {
-    COUNT: 'COUNT'
+    count: 'count',
+    getByIdFn: 'getByIdFn' // Suffix of -FN should indicate this is functional declration
   },
   mutations: {
-    SET_DATA: 'SET_DATA',
-    SET_LOADING: 'SET_LOADING'
+    setData: 'SET_DATA',
+    setLoading: 'SET_LOADING'
   },
   store: {
     // These can't be made into key refs,
     // just make sure they match on every store
-    DATA: 'DATA',
-    LOADING: 'LOADING'
+    data: 'data',
+    loading: 'loading'
   }
 }
 
@@ -24,15 +25,34 @@ const shared = {
  */
 const album = {}
 
-const photo = {}
+const photo = {
+  actions: {
+    initAlbumId: 'initAlbumId'
+  },
+  getters: {
+    getByAlbumIdFn: 'getByAlbumIdFn'
+  }
+}
 
 const post = {}
 
 const todo = {
   mutations: {
-    CREATE_TODO: 'CREATE_TODO',
-    REMOVE_TODO: 'REMOVE_TODO',
-    TOGGLE_TODO_COMPLETE: 'TOGGLE_TODO_COMPLETE'
+    createTodo: 'CREATE_TODO',
+    removeTodo: 'REMOVE_TODO',
+    toggleTodoComplete: 'TOGGLE_TODO_COMPLETE'
+  }
+}
+
+const todoForm = {
+  actions: {
+    create: 'create'
+  },
+  getters: {
+    submitDisabled: 'submitDisabled'
+  },
+  mutations: {
+    setTitleHtml: 'setTitleHtml'
   }
 }
 
@@ -43,5 +63,6 @@ export const StoreKeys = {
   photo,
   post,
   shared,
-  todo
+  todo,
+  todoForm
 }

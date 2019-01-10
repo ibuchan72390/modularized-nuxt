@@ -44,7 +44,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     'nuxt-ts',
-    'nuxt-tslint',
+    'nuxt-tslint'
   ],
   /*
   ** Axios module configuration
@@ -77,6 +77,10 @@ module.exports = {
             // fix: true
           }
         })
+      }
+
+      if (ctx.isClient) {
+        config.devtool = '#source-map'; // create sourcemaps
       }
     }
   }

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div id="navigation">
+      <nuxt-link to="/" class="button--grey">Home</nuxt-link>
+      <nuxt-link to="/about" class="button--grey">About</nuxt-link>
+      <nuxt-link to="/todo" class="button--grey">Todos</nuxt-link>
+      <nuxt-link to="/user" class="button--grey">Users</nuxt-link>
+      <nuxt-link to="/post" class="button--grey">Posts</nuxt-link>
+      <nuxt-link to="/comment" class="button--grey">Comment</nuxt-link>
+      <nuxt-link to="/photo" class="button--grey">Photos</nuxt-link>
+      <nuxt-link to="/album" class="button--grey">Albums</nuxt-link>
+    </div>
     <nuxt/>
   </div>
 </template>
@@ -9,6 +19,15 @@
 
 
 <style>
+#navigation {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -49,7 +68,6 @@ html {
   color: #35495e;
   text-decoration: none;
   padding: 10px 30px;
-  margin-left: 15px;
 }
 
 .button--grey:hover {

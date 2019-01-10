@@ -9,6 +9,11 @@
   ],
   "rules": {
     // Added by package tslint-plugin-prettier
-    "prettier": true
+    "prettier": true,
+
+    // Rules I find fucking annoying
+    "ordered-imports": false, // IDC if imports are alphabetically ordered all the time
+    "no-console": false       // This is a sample app, IDC about logs to console, debugging purposes
+
   }
 }
