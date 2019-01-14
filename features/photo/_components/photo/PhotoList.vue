@@ -5,15 +5,12 @@
 </template>
 
 <script lang="ts">
-import Component from 'nuxt-class-component'
-import { namespace, Prop } from 'nuxt-property-decorator'
 import Vue from 'vue'
-import { StoreKeys } from '~/models/const/store.keys'
+import Component from 'nuxt-class-component'
+import { Prop } from 'nuxt-property-decorator'
 import { Photo } from '~/models/entity/Photo'
-import PhotoCard from './PhotoCard.vue'
-import { NamespaceKeys } from '~/models/const/namespace.keys'
 
-const photo = namespace(NamespaceKeys.photo)
+import PhotoCard from './PhotoCard.vue'
 
 @Component({
   components: {

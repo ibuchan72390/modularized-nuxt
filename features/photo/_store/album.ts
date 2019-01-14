@@ -1,6 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
 import { GetterUtility } from '~/util'
-import { Api, Album, StoreKeys, IAlbumState } from '~/models'
+import { Album, StoreKeys, IAlbumState } from '~/models'
+import { PhotoApi } from '../_api/PhotoApi'
 
 export const state = (): IAlbumState => {
   return {
@@ -52,11 +53,21 @@ export const actions: ActionTree<IAlbumState, IAlbumState> = {
   async [StoreKeys.shared.actions.initialize](context: any): Promise<Album[]> {
     context.commit(StoreKeys.shared.mutations.setLoading, true)
 
-    const todos = await Api.loadAlbumsAsync()
+    const todos = await PhotoApi.loadAlbumsAsync()
 
     context.commit(StoreKeys.shared.mutations.setData, todos)
     context.commit(StoreKeys.shared.mutations.setLoading, false)
 
     return todos
   }
+}
+
+const namespaced = true
+
+export default {
+  actions,
+  getters,
+  mutations,
+  namespaced,
+  state
 }

@@ -26,11 +26,7 @@
 import Component from 'nuxt-class-component'
 import { Prop } from 'nuxt-property-decorator'
 import Vue from 'vue'
-import { namespace } from 'vuex-class'
-import { NamespaceKeys } from '~/models/const/namespace.keys'
 import { Photo } from '~/models/entity/Photo'
-
-const photo = namespace(NamespaceKeys.photo)
 
 @Component
 export default class PhotoCard extends Vue {

@@ -34,6 +34,21 @@ const photo = {
   }
 }
 
+const albumDetail = {
+  getters: {
+    initialized: 'initialized',
+    photoCount: 'photoCount'
+  },
+  mutations: {
+    setAlbum: 'SET_ALBUM',
+    setPhotos: 'SET_PHOTOS'
+  },
+  store: {
+    album: 'album',
+    photos: 'photos'
+  }
+}
+
 const post = {}
 
 const todo = {
@@ -46,13 +61,21 @@ const todo = {
 
 const todoForm = {
   actions: {
-    create: 'create'
+    create: 'create',
+    initializeForm: 'initializeForm'
   },
   getters: {
-    submitDisabled: 'submitDisabled'
+    errorsFn: 'errorsFn',
+    getKeyedItemTitleFn: 'getKeyedItemTitleFn',
+    inputLengthFn: 'inputLengthFn',
+    submitDisabledFn: 'submitDisabledFn'
   },
   mutations: {
-    setTitleHtml: 'setTitleHtml'
+    removeEntry: 'REMOVE_ENTRY',
+    setTitle: 'SET_TITLE'
+  },
+  store: {
+    maxLength: 'maxLength'
   }
 }
 
@@ -60,9 +83,11 @@ const user = {}
 
 export const StoreKeys = {
   album,
+  albumDetail,
   photo,
   post,
   shared,
   todo,
-  todoForm
+  todoForm,
+  user
 }

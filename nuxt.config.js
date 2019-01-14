@@ -34,7 +34,12 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/directives.js'
+    '~/plugins/components.js',
+    '~/plugins/directives.js',
+    '~/plugins/mixins.js',
+    '~/plugins/vue-global-ext.js',
+    '~/plugins/vue-prototype-ext.js',
+    '~/plugins/external-modules.js'
   ],
 
   /*

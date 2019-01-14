@@ -4,8 +4,8 @@
       class="text-center"
     >This is my silly little homepage to demonstrate our data initialization for the application.</h1>
 
-    <h3>Albums Loaded: {{!albumLoading}}</h3>
-    <h3>Photos Loaded: {{!photoLoading}}</h3>
+    <h3>Albums Loaded: LAZY INIT</h3>
+    <h3>Photos Loaded: LAZY INIT</h3>
     <h3>Posts Loaded: {{!postLoading}}</h3>
     <h3>Todos Loaded: LAZY INIT</h3>
     <h3>Users Loaded: {{!userLoading}}</h3>

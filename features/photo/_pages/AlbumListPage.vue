@@ -12,19 +12,21 @@
 </template>
 
 <script lang="ts">
-import Component from 'nuxt-class-component'
-import { namespace } from 'nuxt-property-decorator'
 import Vue from 'vue'
-import { NamespaceKeys } from '~/models/const/namespace.keys'
-import { StoreKeys } from '~/models/const/store.keys'
-import { Album } from '~/models/entity/Album'
-// import AlbumCard from '~/components/album/AlbumCard.vue'
+import Component from 'nuxt-class-component'
+
+import { namespace } from 'nuxt-property-decorator'
+import { Album, NamespaceKeys, StoreKeys } from '~/models'
+import { StoreUtil } from '~/util';
+
+import AlbumCard from '../_components/album/AlbumCard.vue'
+import AlbumStore from '../_store/album'
 
 const albm = namespace(NamespaceKeys.album)
 
 @Component({
   components: {
-    // AlbumCard
+    AlbumCard
   }
 })
 export default class AlbumPage extends Vue {
@@ -33,6 +35,14 @@ export default class AlbumPage extends Vue {
 
   @albm.Action(StoreKeys.shared.actions.initialize)
   public reinitialize: () => Album[]
+
+  public beforeCreate(): void {
+    StoreUtil.EnsureStoreRegistered(
+      this.$store,
+      NamespaceKeys.album,
+      AlbumStore
+    )
+  }
 
   public async created(): Promise<Album[]> {
     return await this.reinitialize()

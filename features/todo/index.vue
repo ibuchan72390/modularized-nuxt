@@ -1,6 +1,6 @@
 <template>
   <div>
-    <todo-form></todo-form>
+    <todo-form-redo></todo-form-redo>
 
     <div style="margin-top: 12px; margin-bottom: 12px;">
       <button @click="clearAll()">Clear All</button>
@@ -19,7 +19,9 @@ import { NamespaceKeys, NuxtKeys, StoreKeys, Todo } from '~/models'
 import { StoreUtil } from '~/util/store-util'
 
 import TodoForm from './_components/TodoForm.vue'
+import BetterTodoForm from './_components/BetterTodoForm.vue'
 import TodoList from './_components/TodoList.vue'
+import TodoFormRedo from './_components/TodoFormRedo.vue'
 
 import TodoStore from './_store/todo'
 import TodoFormStore from './_store/todo-form'
@@ -30,6 +32,8 @@ const todoForm = namespace(NamespaceKeys.todoForm)
 @Component({
   components: {
     TodoForm,
+    BetterTodoForm,
+    TodoFormRedo,
     TodoList
   }
 })
@@ -42,10 +46,12 @@ export default class ExternalTodoPage extends Vue {
   @todo.Action(StoreKeys.shared.actions.initialize)
   public reinitialize!: () => void
 
-  public created() {
-    console.log('Creating Todo Page')
-
-    StoreUtil.EnsureStoreRegistered(this.$store, NamespaceKeys.todo, TodoStore)
+  public beforeCreate() {
+    StoreUtil.EnsureStoreRegistered(
+      this.$store,
+      NamespaceKeys.todo,
+      TodoStore
+    )
 
     StoreUtil.EnsureStoreRegistered(
       this.$store,
@@ -56,11 +62,6 @@ export default class ExternalTodoPage extends Vue {
 
   public async mounted(): Promise<void> {
     await this.reinitialize()
-  }
-
-  public destroyed(): void {
-    StoreUtil.RemoveStoreRegistration(this.$store, NamespaceKeys.todo)
-    StoreUtil.RemoveStoreRegistration(this.$store, NamespaceKeys.todoForm)
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>This is my test user panel</h1>
+    <h1>This is my test user panel for User Id: {{user.id}}</h1>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
 import { StoreKeys, Todo, ITodoState } from '~/models'
 import { ActionsUtility } from '~/util'
-import { TodoApi } from '../_api/todo_api'
+import { TodoApi } from '../_api/TodoApi'
 
 export const state = (): ITodoState => {
   return {

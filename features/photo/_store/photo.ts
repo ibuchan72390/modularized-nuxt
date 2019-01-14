@@ -1,10 +1,7 @@
-import { GetterUtility } from '../util/getters-util'
-import { ActionsUtility } from '../util/actions-util'
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
-import { Api } from '~/models/const/api'
-import { StoreKeys } from '~/models/const/store.keys'
-import { Photo } from '~/models/entity/Photo'
-import { IPhotoState } from '~/models/state/IPhotoState'
+import { IPhotoState, Photo, StoreKeys } from '~/models'
+import { GetterUtility, ActionsUtility } from '~/util'
+import { PhotoApi } from '../_api/PhotoApi'
 
 export const state = (): IPhotoState => {
   return {
@@ -58,7 +55,10 @@ export const actions: ActionTree<IPhotoState, IPhotoState> = {
   },
 
   async [StoreKeys.shared.actions.initialize](context: any): Promise<Photo[]> {
-    return await ActionsUtility.initializeAsync(context, Api.loadPhotosAsync)
+    return await ActionsUtility.initializeAsync(
+      context,
+      PhotoApi.loadPhotosAsync
+    )
   },
 
   async [StoreKeys.photo.actions.initAlbumId](
@@ -66,7 +66,17 @@ export const actions: ActionTree<IPhotoState, IPhotoState> = {
     albumId: number
   ): Promise<Photo[]> {
     return await ActionsUtility.initializeAsync(context, () =>
-      Api.loadPhotosByAlbumAsync(albumId)
+      PhotoApi.loadPhotosByAlbumAsync(albumId)
     )
   }
+}
+
+export const namespace = true
+
+export default {
+  actions,
+  getters,
+  mutations,
+  namespace,
+  state
 }
