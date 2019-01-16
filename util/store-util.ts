@@ -10,10 +10,10 @@ export class StoreUtil {
     // I think duplicate registration may be a scary concept
     if (!this.keyInStore($store, key)) {
       console.log('Registering store to key: ' + key)
+      $store.registerModule(key, newStore)
 
       return await new Promise<void>(async (resolve, reject) => {
         await setTimeout(() => {
-          $store.registerModule(key, newStore)
           resolve()
         }, 500)
       })

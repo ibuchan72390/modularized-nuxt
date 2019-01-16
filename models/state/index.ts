@@ -1,7 +1,2 @@
-export * from '../../features/photo/_models/IAlbumState'
 export * from './IBaseState'
-export * from '../../features/photo/_models/IPhotoState'
-export * from './IPostState'
-export * from './ITodoState'
-export * from './ITodoFormState'
 export * from './IUserState'

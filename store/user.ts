@@ -20,12 +20,6 @@ export const getters: GetterTree<IUserState, IUserState> = {
       return 0
     }
     return stateData.length
-  },
-
-  // Getter Functions
-  // https://vuex.vuejs.org/guide/getters.html#method-style-access
-  [StoreKeys.shared.getters.getByIdFn]: (STATE: IUserState) => {
-    return GetterUtility.getByIdFn(STATE)
   }
 }
 

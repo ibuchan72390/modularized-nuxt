@@ -5,8 +5,7 @@ const shared = {
     initialize: 'initialize'
   },
   getters: {
-    count: 'count',
-    getByIdFn: 'getByIdFn' // Suffix of -FN should indicate this is functional declration
+    count: 'count'
   },
   mutations: {
     setData: 'SET_DATA',
@@ -51,31 +50,17 @@ const albumDetail = {
 
 const post = {}
 
-const todo = {
-  mutations: {
-    createTodo: 'CREATE_TODO',
-    removeTodo: 'REMOVE_TODO',
-    toggleTodoComplete: 'TOGGLE_TODO_COMPLETE'
-  }
-}
-
-const todoForm = {
-  actions: {
-    create: 'create',
-    initializeForm: 'initializeForm'
-  },
+const postDetail = {
   getters: {
-    errorsFn: 'errorsFn',
-    getKeyedItemTitleFn: 'getKeyedItemTitleFn',
-    inputLengthFn: 'inputLengthFn',
-    submitDisabledFn: 'submitDisabledFn'
+    loading: 'loading'
   },
   mutations: {
-    removeEntry: 'REMOVE_ENTRY',
-    setTitle: 'SET_TITLE'
+    setComments: 'SET_COMMENTS',
+    setPost: 'SET_POST'
   },
   store: {
-    maxLength: 'maxLength'
+    post: 'post',
+    comments: 'comments'
   }
 }
 
@@ -86,8 +71,7 @@ export const StoreKeys = {
   albumDetail,
   photo,
   post,
+  postDetail,
   shared,
-  todo,
-  todoForm,
   user
 }

@@ -19,7 +19,10 @@ export const actions: ActionTree<IAblumDetailState, IAblumDetailState> = {
     context.commit(StoreKeys.albumDetail.mutations.setPhotos, photos)
 
     const album = await PhotoApi.loadAlbumByIdAsync(albumId)
-    context.commit(StoreKeys.albumDetail.mutations.setAlbum, album)
+
+    if (album) {
+      context.commit(StoreKeys.albumDetail.mutations.setAlbum, album[0])
+    }
   },
 
   [StoreKeys.shared.actions.clear](context: any): void {
@@ -44,7 +47,7 @@ export const getters: GetterTree<IAblumDetailState, IAblumDetailState> = {
 }
 
 export const mutations: MutationTree<IAblumDetailState> = {
-  [StoreKeys.albumDetail.mutations.setPhotos](
+  [StoreKeys.albumDetail.mutations.setAlbum](
     STATE: IAblumDetailState,
     album: Album
   ): void {

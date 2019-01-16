@@ -3,6 +3,6 @@ export interface IBaseState<T> {
   // [StoreKeys.shared.store.DATA]: T[] = [];
   // [StoreKeys.shared.store.LOADING]: boolean = true;
 
-  data: T[]
-  loading: boolean
+  data: T[] | null
+  loading: boolean // This can probably just be a getter data === null
 }

@@ -6,6 +6,8 @@
       <h3>Owned by User:
         <nuxt-link :to="{ name: 'User-id', params: { id: album.userId } }">{{ album.userId }}</nuxt-link>
       </h3>
+
+      <h3>Album Photos:</h3>
       <photo-list :photos="photos"></photo-list>
     </div>
   </div>
@@ -16,11 +18,9 @@ import Vue from 'vue'
 import Component, { namespace } from 'nuxt-class-component'
 import { Route } from 'vue-router'
 import { Album, NamespaceKeys, Photo, StoreKeys } from '~/models'
-import { StoreUtil } from '~/util';
+import { StoreUtil } from '~/util'
 
 import PhotoList from '../_components/photo/PhotoList.vue'
-
-import AlbumDetailStore from '../_store/album-detail'
 
 const albmDet = namespace(NamespaceKeys.albumDetail)
 
@@ -44,14 +44,6 @@ export default class ExternalAlbumIdPage extends Vue {
 
   @albmDet.Action(StoreKeys.shared.actions.clear)
   private clear: () => void
-
-  public beforeCreate(): void {
-    StoreUtil.EnsureStoreRegistered(
-      this.$store,
-      NamespaceKeys.albumDetail,
-      AlbumDetailStore
-    )
-  }
 
   public async mounted(): Promise<void> {
     /* tslint:disable:no-string-literal */

@@ -1,5 +1,6 @@
 <template>
-  <div>
-    this is my album id page
-  </div>
+  <external-album-id-page></external-album-id-page>
 </template>
+
+<script lang="ts">
+</script>

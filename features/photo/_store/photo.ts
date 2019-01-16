@@ -1,6 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
-import { IPhotoState, Photo, StoreKeys } from '~/models'
-import { GetterUtility, ActionsUtility } from '~/util'
+import { Photo, StoreKeys } from '~/models'
+import { ActionsUtility } from '~/util'
+import { IPhotoState } from '../_models/IPhotoState'
 import { PhotoApi } from '../_api/PhotoApi'
 
 export const state = (): IPhotoState => {
@@ -21,10 +22,6 @@ export const getters: GetterTree<IPhotoState, IPhotoState> = {
 
   // Getter Functions
   // https://vuex.vuejs.org/guide/getters.html#method-style-access
-  [StoreKeys.shared.getters.getByIdFn]: (STATE: IPhotoState) => {
-    return GetterUtility.getByIdFn(STATE)
-  },
-
   [StoreKeys.photo.getters.getByAlbumIdFn]: (STATE: IPhotoState) => {
     return (albumId: number): Photo[] => {
       const stateData: Photo[] = STATE[StoreKeys.shared.store.data]
@@ -71,12 +68,12 @@ export const actions: ActionTree<IPhotoState, IPhotoState> = {
   }
 }
 
-export const namespace = true
+export const namespaced = true
 
 export default {
   actions,
   getters,
   mutations,
-  namespace,
+  namespaced,
   state
 }

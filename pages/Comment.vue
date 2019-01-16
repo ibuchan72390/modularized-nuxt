@@ -1,12 +1,7 @@
 <template>
-  <h1>This is my test comments page</h1>
+  <external-comment-list-page></external-comment-list-page>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Component from 'nuxt-class-component'
-
-@Component
-export default class CommentPage extends Vue {}
 </script>
 

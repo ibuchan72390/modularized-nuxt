@@ -27,19 +27,19 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/main.css'
+    '~/assets/main.css',
+    '~/node_modules/nuxt-todo-module/dist/NuxtTodoLib.css'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/components.js',
-    '~/plugins/directives.js',
-    '~/plugins/mixins.js',
-    '~/plugins/vue-global-ext.js',
-    '~/plugins/vue-prototype-ext.js',
-    '~/plugins/external-modules.js'
+
+    // My Modules - Setting ssr: false breaks everything
+    { src: '~/plugins/PhotoPlugin.js', ssr: true },
+    { src: '~/plugins/PostPlugin.js', ssr: true },
+    { src: '~/plugins/TodoPlugin.js', ssr: true }
   ],
 
   /*

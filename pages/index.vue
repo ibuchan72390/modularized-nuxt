@@ -6,12 +6,9 @@
 
     <h3>Albums Loaded: LAZY INIT</h3>
     <h3>Photos Loaded: LAZY INIT</h3>
-    <h3>Posts Loaded: {{!postLoading}}</h3>
+    <h3>Posts Loaded: LAZY INIT</h3>
     <h3>Todos Loaded: LAZY INIT</h3>
     <h3>Users Loaded: {{!userLoading}}</h3>
-    <!--
-    <hello-world></hello-world>
-    -->
   </div>
 </template>
 
@@ -19,21 +16,12 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import { namespace } from 'vuex-class'
 
-const album = namespace('album')
-const photo = namespace('photo')
-const post = namespace('post')
 const user = namespace('user')
 
 const baseLoading = 'LOADING'
 
 @Component
 export default class Home extends Vue {
-  @album.State(baseLoading)
-  public albumLoading!: boolean
-  @photo.State(baseLoading)
-  public photoLoading!: boolean
-  @post.State(baseLoading)
-  public postLoading!: boolean
   @user.State(baseLoading)
   public userLoading!: boolean
 }

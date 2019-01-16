@@ -1,6 +1,7 @@
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
 import { GetterUtility } from '~/util'
-import { Album, StoreKeys, IAlbumState } from '~/models'
+import { Album, StoreKeys } from '~/models'
+import { IAlbumState } from '../_models/IAlbumState'
 import { PhotoApi } from '../_api/PhotoApi'
 
 export const state = (): IAlbumState => {
@@ -18,14 +19,6 @@ export const getters: GetterTree<IAlbumState, IAlbumState> = {
       return 0
     }
     return stateData.length
-  },
-
-  // Getter Functions
-  // https://vuex.vuejs.org/guide/getters.html#method-style-access
-  [StoreKeys.shared.getters.getByIdFn]: (
-    STATE: IAlbumState
-  ): ((id: number) => Album) => {
-    return GetterUtility.getByIdFn<IAlbumState, Album>(STATE)
   }
 }
 

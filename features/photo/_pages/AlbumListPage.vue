@@ -2,11 +2,7 @@
   <div>
     <h1>Test Album page</h1>
     <div class="flex-wrap-container">
-      <album-card
-        v-for="album of albums"
-        :key="album.id"
-        :album="album">
-      </album-card>
+      <album-card v-for="album of albums" :key="album.id" :album="album"></album-card>
     </div>
   </div>
 </template>
@@ -17,10 +13,9 @@ import Component from 'nuxt-class-component'
 
 import { namespace } from 'nuxt-property-decorator'
 import { Album, NamespaceKeys, StoreKeys } from '~/models'
-import { StoreUtil } from '~/util';
+import { StoreUtil } from '~/util'
 
 import AlbumCard from '../_components/album/AlbumCard.vue'
-import AlbumStore from '../_store/album'
 
 const albm = namespace(NamespaceKeys.album)
 
@@ -29,20 +24,12 @@ const albm = namespace(NamespaceKeys.album)
     AlbumCard
   }
 })
-export default class AlbumPage extends Vue {
+export default class ExternalAlbumListPage extends Vue {
   @albm.State(StoreKeys.shared.store.data)
   public albums: Album[]
 
   @albm.Action(StoreKeys.shared.actions.initialize)
   public reinitialize: () => Album[]
-
-  public beforeCreate(): void {
-    StoreUtil.EnsureStoreRegistered(
-      this.$store,
-      NamespaceKeys.album,
-      AlbumStore
-    )
-  }
 
   public async created(): Promise<Album[]> {
     return await this.reinitialize()

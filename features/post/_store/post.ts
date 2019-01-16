@@ -1,12 +1,13 @@
-import { GetterUtility, ActionsUtility } from '~/util'
+import { ActionsUtility } from '~/util'
 import { ActionTree, GetterTree, MutationTree } from 'vuex'
-import { Api, StoreKeys, Post, IPostState } from '~/models'
+import { Api, StoreKeys, Post } from '~/models'
+import { IPostState } from '../_models/IPostState'
 
 export const state = (): IPostState => {
   return {
-    [StoreKeys.shared.store.data]: null,
-    [StoreKeys.shared.store.loading]: true
-  } as any
+    data: null,
+    loading: true
+  }
 }
 
 export const getters: GetterTree<IPostState, IPostState> = {
@@ -16,12 +17,6 @@ export const getters: GetterTree<IPostState, IPostState> = {
       return 0
     }
     return stateData.length
-  },
-
-  // Getter Functions
-  // https://vuex.vuejs.org/guide/getters.html#method-style-access
-  [StoreKeys.shared.getters.getByIdFn]: (STATE: IPostState) => {
-    return GetterUtility.getByIdFn(STATE)
   }
 }
 
@@ -46,4 +41,12 @@ export const actions: ActionTree<IPostState, IPostState> = {
   async [StoreKeys.shared.actions.initialize](context: any): Promise<Post[]> {
     return await ActionsUtility.initializeAsync(context, Api.loadPostsAsync)
   }
+}
+
+export default {
+  actions,
+  getters,
+  mutations,
+  namespaced: true,
+  state
 }

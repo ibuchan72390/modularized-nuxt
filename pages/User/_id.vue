@@ -17,8 +17,5 @@ const usr = namespace(NamespaceKeys.user)
 export default class UserIdPage extends Vue {
   @usr.Action(StoreKeys.shared.actions.initialize)
   private init: () => Promise<User[]>
-
-  @usr.Getter(StoreKeys.shared.getters.getByIdFn)
-  private getByIdFn: (id: number) => User
 }
 </script>

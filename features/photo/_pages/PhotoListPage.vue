@@ -1,7 +1,10 @@
 <template>
-  <div v-if="init">
+  <div>
     <h1 style="margin-bottom: 24px">Photos List</h1>
-    <photo-list :photos="photos"></photo-list>
+    <div v-if="!loading">
+      <photo-list :photos="photos"></photo-list>
+    </div>
+    <span v-if="loading">Loading!</span>
   </div>
 </template>
 
@@ -10,11 +13,9 @@ import Component from 'nuxt-class-component'
 import Vue from 'vue'
 import { Action, namespace } from 'vuex-class'
 import { NamespaceKeys, Photo, StoreKeys } from '~/models'
-import { StoreUtil } from '~/util';
+import { StoreUtil } from '~/util'
 
 import PhotoList from '../_components/photo/PhotoList.vue'
-
-import PhotoStore from '../_store/photo'
 
 const photo = namespace(NamespaceKeys.photo)
 
@@ -24,25 +25,9 @@ const photo = namespace(NamespaceKeys.photo)
   }
 })
 export default class ExternalPhotoListPage extends Vue {
-
-  public init: boolean = false
-
-
-  public async beforeCreate(): Promise<void> {
-    await StoreUtil.EnsureStoreRegistered(
-      this.$store,
-      NamespaceKeys.photo,
-      PhotoStore)
-  }
-
-  public async created(): Promise<void> {
-    console.log('Created store: ', this.$store)
-  }
-
   public async mounted(): Promise<void> {
-    console.log('Mounted store: ', this.$store)
-    await this.reinitialize()
-    this.init = true
+    console.log(this.$store)
+    const photos = await this.reinitialize()
   }
 
   @photo.State(StoreKeys.shared.store.loading)
@@ -53,6 +38,5 @@ export default class ExternalPhotoListPage extends Vue {
 
   @photo.Action(StoreKeys.shared.actions.initialize)
   public reinitialize: () => Promise<Photo[]>
-
 }
 </script>
